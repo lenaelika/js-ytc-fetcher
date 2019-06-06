@@ -221,6 +221,9 @@ function loadVideo() {
             params.channelId = video.snippet.channelId;
             storeParams();
 
+            // set title for browser favorites
+            document.title = video.snippet.channelTitle + " - YTC Fetcher";
+
             loadComments();
         },
         (err) => {
