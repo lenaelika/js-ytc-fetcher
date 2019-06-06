@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Youtube Comments Fetcher</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+    <!-- error messages  -->
+    <div id="alert-template" class="d-none">
+        <div class="alert alert-dismissible fade show" role="alert">
+            <button type="button" class="close m-n1" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    <div id="alert-list"></div>
+    <!-- content -->    
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 mx-auto d-none" id="request">
+                <h1 class="text-center">Youtube Comments Fetcher</h1>
+                <!-- request data -->
+                <div class="card bg-light mt-3 mb-3">
+                    <form id="request-form" method="GET" action="./index.html">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="request-key">Google API Key</label>
+                            <input class="form-control form-control-sm" id="request-key" name="key" type="text" value="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="request-id">Video/Channel ID or Username</label>
+                            <input class="form-control form-control-sm" id="request-id" name="id" type="text" value="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="request-limit">Max Results</label>
+                            <input class="form-control form-control-sm" id="request-limit" name="limit" type="number" value="" placeholder="20">
+                        </div>
+                        <div class="form-group">
+                            <label for="request-limit">Highlight Recent Comments</label>
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" id="request-limit" name="recent" type="number" value="5" placeholder="off">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">minutes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="request-update">Update Frequency</label>
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" id="request-update" name="update" type="number" value="60" placeholder="off">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary">Fetch</button>
+                        <button type="button" class="btn btn-sm btn-secondary" id="renew">Reset</button>
+                        <!-- support email -->
+                        <div class="float-right pt-3"><a href="mailto:lenaelika@mail.ru?subject=YTC Fetcher" class="text-muted">@lenaelika</a></div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 mx-auto d-none" id="list">
+                <!-- comments list -->
+                <h2 id="videoTitle"></h2>
+                <div>
+                    <span class="float-right">
+                        <span id="update" class="text-success d-none">Update in <span></span>s</span>
+                        <a id="refresh" href="#list" class="text-success d-none">refresh</a>
+                        <a id="stop" href="#request" class="text-danger pl-2"></a>
+                    </span>
+                    <span id="videoStats" class="text-muted"></span>
+                </div>
+                <div id="comments"></div>
+                <!-- templates -->
+                <div id="comment-template" class="d-none">
+                    <div class="mt-2">
+                        <div>
+                            <span class="text-info comment-username"></span>
+                            <span class="text-muted comment-date"></span>
+                            <span class="comment-reply-count"><a href="#" data-toggle="collapse"></a></span>
+                        </div>
+                        <div class="comment-text"></div>
+                    </div>
+                </div>
+                <div id="comment-card-template" class="d-none">
+                    <div class="card mt-2">
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+
+    <!-- google api -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="js/actions.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+body {
+    font-size: 12px;
+}
+
+h1, h2 {
+    font-size: 1.2rem;
+}
+
+#alert-list {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 300px;
+    z-index: 100;
+}
+
+.comment-reply-count a::after {
+    content: " ⇣";
+}
+
+.comment-reply-count a.collapsed::after {
+    content: " ⇡";
+}
