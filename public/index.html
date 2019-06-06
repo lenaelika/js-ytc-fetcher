@@ -22,7 +22,7 @@
     <!-- content -->    
     <div class="container my-3">
         <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 mx-auto d-none" id="request">
+            <div class="col-lg-5 col-md-12 mx-auto d-none" id="request">
                 <h1 class="text-center">Youtube Comments Fetcher</h1>
                 <!-- request data -->
                 <div class="card bg-light mt-3 mb-3">
@@ -33,12 +33,12 @@
                             <input class="form-control form-control-sm" id="request-key" name="key" type="text" value="" required>
                         </div>
                         <div class="form-group">
-                            <label for="request-id">Video/Channel ID or Username</label>
+                            <label for="request-id">Video/Channel URL/ID/Username</label>
                             <input class="form-control form-control-sm" id="request-id" name="id" type="text" value="" required>
                         </div>
                         <div class="form-group">
                             <label for="request-limit">Max Results</label>
-                            <input class="form-control form-control-sm" id="request-limit" name="limit" type="number" value="" placeholder="20">
+                            <input class="form-control form-control-sm" id="request-limit" name="limit" type="number" value="20" placeholder="20">
                         </div>
                         <div class="form-group">
                             <label for="request-limit">Highlight Recent Comments</label>
@@ -66,7 +66,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-12 mx-auto d-none" id="list">
+            <div class="col-lg-7 col-md-12 mx-auto d-none" id="list">
                 <!-- comments list -->
                 <h2 id="videoTitle"></h2>
                 <div>

@@ -6,8 +6,10 @@
 var params, timer = null;
 
 var srcRegex = {
-    "channel": new RegExp("^[a-z0-9_-]{24}$", "i"),
-    "video": new RegExp("^[a-z0-9_-]{11}$", "i"),
+    "url": /^https?:\/\/(?:www\.)?youtu(?:be\.com\/(?:channel\/|watch\?v=)|\.be\/)([-\w]+)/,
+    "channel": /^[-\w]{24}$/,
+    "video": /^[-\w]{11}$/,
+    "username": /^[-\w]+$/,
 };
 
 $(function() {
@@ -26,7 +28,7 @@ $(function() {
     // get params override locals
     var get = {};
     window.location.search.replace(/[?&]+(\w+)=([^?&#]*)/g, (str, key, value) => {
-        get[key] = value.trim();
+        get[key] = decodeURIComponent(value.trim());
     });
     
     // fetch data if all get params as provided
@@ -118,6 +120,10 @@ function loadClient() {
             }).then(
                 () => {
                     // guess source
+                    var match = srcRegex["url"].exec(params.id);
+                    if (match !== null) {
+                        params.id = match[1];
+                    }
                     if (srcRegex["channel"].test(params.id)) {
                         params.channelId = params.id;
                         params.username = null;
@@ -125,10 +131,12 @@ function loadClient() {
                     } else if (srcRegex["video"].test(params.id)) {
                         params.videoId = params.id;
                         loadVideo();
-                    } else {
+                    } else if (srcRegex["username"].test(params.id)) {
                         params.channelId = null;
                         params.username = params.id;
                         loadChannelVideo();
+                    } else {
+                        showWarning("ID/URL is not recognized as Youtube");
                     }
                 }
             );

@@ -13,9 +13,8 @@ It's a client-side app with a couple **requirements**:
 ## What it can do
 
 1. Fetch comments for
-  * video by its id;
-  * last video by channel id;
-  * last video by channel username.
+  * video by its URL or ID;
+  * last video by channel URL, ID or username;
 2. Load up to 100 top-level comments with 100 replies for each (GAPI limits).
 3. Autoload new comments every number of seconds
 (keep in mind the daily request quota for API key with frequent and large updates, generally the default settings are with a good margin for personal use).
