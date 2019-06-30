@@ -394,7 +394,7 @@ function loadReplies(commentId, commentObj) {
             var $list = $("<div id='r-" + commentId + "' class='collapse show'>");
             resp.result.items.forEach((item) => {
                 var $c = makeComment(false, item.snippet, 0);
-                $list.append($c.addClass("ml-3"));
+                $list.prepend($c.addClass("ml-3"));
             });
             commentObj.append($list);
         },
